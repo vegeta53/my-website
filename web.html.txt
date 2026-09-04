@@ -1,0 +1,737 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vivek Shukla — Cybersecurity &amp; Web Development</title>
+<meta name="description" content="Portfolio of Vivek Shukla — Developer based in Gorakhpur, specializing in cybersecurity, network defense, and web engineering.">
+<meta name="theme-color" content="#030712">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23030712'/%3E%3Ctext x='50' y='68' font-size='56' font-family='monospace' fill='%2310b981' text-anchor='middle'%3E%3E_%3C/text%3E%3C/svg%3E">
+
+<style>
+:root {
+  --bg-dark: #030712;
+  --bg-card: rgba(15, 23, 42, 0.6);
+  --border-glass: rgba(255, 255, 255, 0.08);
+  --border-focus: rgba(16, 185, 129, 0.4);
+  
+  --emerald: #10b981;
+  --emerald-glow: rgba(16, 185, 129, 0.25);
+  --cyan: #06b6d4;
+  --cyan-glow: rgba(6, 182, 212, 0.25);
+
+  --text-pure: #f8fafc;
+  --text-muted: #94a3b8;
+  --text-faint: #64748b;
+
+  --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --max-w: 1160px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-pure);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Ambient glow system */
+.ambient-glow {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.glow-orb {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  filter: blur(140px);
+  opacity: 0.16;
+  animation: floatOrb 22s infinite alternate ease-in-out;
+}
+.glow-orb-1 { top: -120px; left: -120px; background: var(--cyan); }
+.glow-orb-2 { top: 38%; right: -180px; background: var(--emerald); animation-delay: -8s; }
+.glow-orb-3 { bottom: 0; left: 15%; background: #6366f1; animation-delay: -14s; }
+
+@keyframes floatOrb {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(70px, 50px) scale(1.12); }
+}
+
+/* Background matrix lines */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 44px 44px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.container {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+  z-index: 2;
+}
+
+h1, h2, h3, h4 { font-weight: 700; letter-spacing: -0.025em; line-height: 1.2; }
+p { color: var(--text-muted); font-size: 1.02rem; }
+
+.section-tag {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--emerald);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  padding: 5px 14px;
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.22);
+  border-radius: 9999px;
+}
+
+.section-head { font-size: clamp(2rem, 3.5vw, 2.75rem); margin-bottom: 14px; }
+.section-sub { max-width: 600px; margin-bottom: 48px; }
+
+/* Interactive buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  font-weight: 500;
+  padding: 12px 22px;
+  border-radius: 10px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  text-decoration: none;
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--emerald), #059669);
+  color: #030712;
+  font-weight: 700;
+  box-shadow: 0 0 20px var(--emerald-glow);
+  border: none;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(16, 185, 129, 0.45);
+}
+.btn-glass {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-pure);
+  border: 1px solid var(--border-glass);
+  backdrop-filter: blur(12px);
+}
+.btn-glass:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.22);
+  transform: translateY(-2px);
+}
+
+/* Nav */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: rgba(3, 7, 18, 0.8);
+  border-bottom: 1px solid var(--border-glass);
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+}
+.brand {
+  font-family: var(--font-mono);
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--text-pure);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+.brand .prompt-sym { color: var(--emerald); }
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a {
+  text-decoration: none;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  transition: color 0.2s ease;
+}
+.nav-links a:hover { color: var(--emerald); }
+
+/* Hero section */
+.hero { padding: 170px 0 110px; }
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 48px;
+  align-items: center;
+}
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 9999px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--emerald);
+  margin-bottom: 24px;
+}
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--emerald);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--emerald);
+  animation: pulseDot 2s infinite;
+}
+@keyframes pulseDot { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+.hero-title {
+  font-size: clamp(2.4rem, 4.8vw, 3.8rem);
+  letter-spacing: -0.03em;
+  margin-bottom: 20px;
+}
+.hero-title span {
+  background: linear-gradient(135deg, #f8fafc 40%, var(--emerald) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero-desc { font-size: 1.1rem; line-height: 1.7; margin-bottom: 34px; }
+.hero-btns { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 44px; }
+
+.meta-stats {
+  display: flex;
+  gap: 36px;
+  padding-top: 28px;
+  border-top: 1px solid var(--border-glass);
+}
+.stat-item h4 { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-faint); margin-bottom: 4px; }
+.stat-item p { color: var(--text-pure); font-size: 0.94rem; font-weight: 600; }
+
+/* Interactive Terminal Window */
+.terminal-card {
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid var(--border-glass);
+  border-radius: 16px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+.terminal-card:hover {
+  border-color: rgba(16, 185, 129, 0.3);
+}
+.terminal-header {
+  display: flex;
+  align-items: center;
+  padding: 13px 18px;
+  background: rgba(255, 255, 255, 0.025);
+  border-bottom: 1px solid var(--border-glass);
+  gap: 8px;
+}
+.win-dot { width: 11px; height: 11px; border-radius: 50%; }
+.win-dot-1 { background: #ef4444; }
+.win-dot-2 { background: #f59e0b; }
+.win-dot-3 { background: #10b981; }
+.terminal-title { margin-left: 8px; font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-faint); }
+.terminal-body {
+  padding: 24px;
+  font-family: var(--font-mono);
+  font-size: 0.86rem;
+  min-height: 250px;
+}
+.terminal-line { margin-bottom: 14px; }
+.t-prompt { color: var(--emerald); }
+.t-out { color: var(--text-muted); margin-top: 4px; padding-left: 12px; }
+
+/* O.A.S.I.S. Feature Section */
+.blueprint-card {
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.75) 0%, rgba(3, 7, 18, 0.85) 100%);
+  border: 1px solid var(--border-glass);
+  border-radius: 20px;
+  padding: 44px;
+  backdrop-filter: blur(16px);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.blueprint-card:hover {
+  border-color: rgba(16, 185, 129, 0.3);
+  box-shadow: 0 0 50px -15px rgba(16, 185, 129, 0.15);
+}
+.blueprint-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+  border-bottom: 1px solid var(--border-glass);
+  padding-bottom: 24px;
+}
+.blueprint-title-wrap h3 {
+  font-size: 2.2rem;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.blueprint-title-wrap p { font-size: 0.96rem; color: var(--text-muted); }
+.badge-national {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  padding: 6px 14px;
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--emerald);
+  border: 1px solid rgba(16, 185, 129, 0.28);
+  border-radius: 8px;
+}
+
+.blueprint-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  margin-bottom: 32px;
+}
+.spec-box {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-glass);
+  border-radius: 12px;
+  padding: 24px;
+  transition: border-color 0.2s ease;
+}
+.spec-box:hover { border-color: rgba(255, 255, 255, 0.16); }
+.spec-tag {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  color: var(--cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 10px;
+  display: block;
+}
+.spec-box p { font-size: 0.94rem; line-height: 1.65; }
+
+.spec-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.spec-list li {
+  display: flex;
+  gap: 10px;
+  font-size: 0.93rem;
+  color: var(--text-muted);
+}
+.spec-list li::before {
+  content: "▹";
+  color: var(--emerald);
+}
+
+.tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+.tech-tag {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  padding: 5px 12px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid var(--border-glass);
+  border-radius: 6px;
+  color: var(--text-muted);
+}
+
+.blueprint-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-glass);
+}
+.blueprint-note { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-faint); }
+
+/* Domains section */
+.domains-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+.domain-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-glass);
+  border-radius: 16px;
+  padding: 34px;
+  transition: all 0.3s ease;
+}
+.domain-card:hover {
+  border-color: rgba(16, 185, 129, 0.3);
+  transform: translateY(-3px);
+}
+.domain-icon {
+  width: 48px;
+  height: 48px;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--emerald);
+  margin-bottom: 20px;
+}
+.domain-icon svg { width: 22px; height: 22px; }
+.domain-card h3 { font-size: 1.35rem; margin-bottom: 10px; }
+.domain-card p { font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px; }
+
+/* Contact section */
+.contact-section { padding: 40px 0 100px; }
+.contact-container {
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.8) 0%, rgba(3, 7, 18, 0.9) 100%);
+  border: 1px solid var(--border-glass);
+  border-radius: 20px;
+  padding: 56px 44px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.contact-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.btn-linkedin {
+  background: #0a66c2;
+  color: #ffffff;
+  border: none;
+  font-weight: 600;
+  box-shadow: 0 0 20px rgba(10, 102, 194, 0.3);
+}
+.btn-linkedin:hover {
+  background: #004182;
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(10, 102, 194, 0.5);
+}
+
+footer {
+  padding: 40px 0 60px;
+  border-top: 1px solid var(--border-glass);
+  font-size: 0.85rem;
+  color: var(--text-faint);
+}
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.social-links { display: flex; gap: 20px; }
+.social-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  transition: color 0.2s ease;
+}
+.social-links a:hover { color: var(--emerald); }
+
+@media (max-width: 900px) {
+  .hero-grid, .blueprint-grid, .domains-grid { grid-template-columns: 1fr; }
+  .contact-container { flex-direction: column; align-items: flex-start; }
+  .nav-links { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="ambient-glow" aria-hidden="true">
+  <div class="glow-orb glow-orb-1"></div>
+  <div class="glow-orb glow-orb-2"></div>
+  <div class="glow-orb glow-orb-3"></div>
+</div>
+
+<!-- TOP NAV -->
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="#top" class="brand">
+      <span class="prompt-sym">❯</span> vivek.shukla
+    </a>
+    <ul class="nav-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#competencies">Focus</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="https://github.com/vegeta53" target="_blank" rel="noopener" class="btn btn-glass" style="padding: 8px 16px; font-size: 0.82rem;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.1 3.29 9.42 7.86 10.95.57.1.79-.25.79-.55 0-.27-.01-1.16-.02-2.1-3.2.7-3.87-1.36-3.87-1.36-.52-1.34-1.28-1.7-1.28-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.59.24 2.77.12 3.06.74.8 1.19 1.83 1.19 3.09 0 4.43-2.7 5.4-5.27 5.69.42.36.78 1.07.78 2.15 0 1.55-.01 2.8-.01 3.18 0 .3.21.66.8.55A10.53 10.53 0 0 0 23.5 12c0-6.35-5.15-11.5-11.5-11.5Z"/></svg>
+      vegeta53
+    </a>
+  </div>
+</nav>
+
+<div id="top"></div>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="status-pill">
+        <span class="status-dot"></span>
+        <span>SIH 2026 National Nominee</span>
+      </div>
+      <h1 class="hero-title">
+        Cybersecurity defender &amp; <span>web systems engineer.</span>
+      </h1>
+      <p class="hero-desc">
+        I’m <strong>Vivek Shukla</strong>, based in Gorakhpur. Specializing in network security, system hardening, 
+        and building full-stack web applications designed for reliability under pressure.
+      </p>
+      <div class="hero-btns">
+        <a href="#work" class="btn btn-primary">Featured Work</a>
+        <a href="#contact" class="btn btn-glass">Get in Touch</a>
+      </div>
+      <div class="meta-stats">
+        <div class="stat-item">
+          <h4>LOCATION</h4>
+          <p>Gorakhpur, India</p>
+        </div>
+        <div class="stat-item">
+          <h4>TEAM</h4>
+          <p>Syntax6 (SIH '26)</p>
+        </div>
+        <div class="stat-item">
+          <h4>FOCUS</h4>
+          <p>Security &amp; Web Systems</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TERMINAL DISPLAY -->
+    <div>
+      <div class="terminal-card">
+        <div class="terminal-header">
+          <div class="win-dot win-dot-1"></div>
+          <div class="win-dot win-dot-2"></div>
+          <div class="win-dot win-dot-3"></div>
+          <span class="terminal-title">bash — 80x24</span>
+        </div>
+        <div class="terminal-body" id="termBody">
+          <div class="terminal-line">
+            <span class="t-prompt">vivek@syntax6:~$</span> whoami
+            <div class="t-out">Vivek Shukla — Network Security &amp; Web Dev</div>
+          </div>
+          <div class="terminal-line">
+            <span class="t-prompt">vivek@syntax6:~$</span> query-hackathon --event sih-2026
+            <div class="t-out" style="color: var(--emerald);">[NOMINATED] Team Syntax6 cleared internal screening for national portal.</div>
+          </div>
+          <div class="terminal-line">
+            <span class="t-prompt">vivek@syntax6:~$</span> systemctl status defense-grid
+            <div class="t-out">Active: running (monitoring ports, secure sockets operational)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- PROJECT SHOWCASE: O.A.S.I.S. -->
+<section class="section" id="work" style="padding: 90px 0;">
+  <div class="container">
+    <div class="section-tag">Hackathon Build</div>
+    <h2 class="section-head">What I’ve Built</h2>
+    <p class="section-sub">Engineered and defended with Team Syntax6 at Smart India Hackathon 2026.</p>
+
+    <div class="blueprint-card">
+      <div class="blueprint-header">
+        <div class="blueprint-title-wrap">
+          <h3>O.A.S.I.S.</h3>
+          <p>Oncology Assessment &amp; Screening Information System</p>
+        </div>
+        <span class="badge-national">SIH 2026 National Portal Nominee</span>
+      </div>
+
+      <div class="blueprint-grid">
+        <div class="spec-box">
+          <span class="spec-tag">The Core Problem</span>
+          <p>
+            Cancer-screening pipelines require clear prioritization of referral urgency without obscuring clinical uncertainty. 
+            O.A.S.I.S. delivers an explainable clinician-facing decision-support prototype covering oral, breast, and cervical screening pathways.
+          </p>
+        </div>
+
+        <div class="spec-box">
+          <span class="spec-tag">Safety Rules &amp; Explainability</span>
+          <p>
+            Maintains the Screening Priority Index distinct from cancer probability metrics. 
+            Strict logic prevents low statistical model scores from overriding symptomatic red flags or abnormal physical findings.
+          </p>
+        </div>
+
+        <div class="spec-box" style="grid-column: 1 / -1;">
+          <span class="spec-tag">Technical Architecture &amp; Delivery</span>
+          <ul class="spec-list">
+            <li>Modern, reactive frontend built with <strong>Next.js</strong> and <strong>TypeScript</strong> for rapid, intuitive clinical intakes.</li>
+            <li>Robust backend powered by <strong>FastAPI</strong> and <strong>Pydantic</strong> validating data contracts and ensuring strict typing.</li>
+            <li>Persistent assessment history and structured audit logging via <strong>SQLModel</strong> and <strong>SQLite</strong>.</li>
+            <li>Machine learning models implemented with <strong>scikit-learn</strong> strictly as optional explanatory signals, never black-box autonomous arbiters.</li>
+          </ul>
+
+          <div class="tag-cloud">
+            <span class="tech-tag">Next.js</span>
+            <span class="tech-tag">TypeScript</span>
+            <span class="tech-tag">FastAPI</span>
+            <span class="tech-tag">Pydantic</span>
+            <span class="tech-tag">SQLModel</span>
+            <span class="tech-tag">SQLite</span>
+            <span class="tech-tag">scikit-learn</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="blueprint-footer">
+        <span class="blueprint-note">Built by Team Syntax6 · Supports decisions, does not diagnose.</span>
+        <a href="https://github.com/ThunderKhan/oasis" target="_blank" rel="noopener" class="btn btn-glass" style="font-size: 0.84rem;">
+          View Repository ↗
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOMAINS -->
+<section class="section" id="competencies" style="padding: 40px 0 100px;">
+  <div class="container">
+    <div class="section-tag">Core Disciplines</div>
+    <h2 class="section-head">Technical Focus</h2>
+    <p class="section-sub">Disciplines where I direct my practical security research and engineering.</p>
+
+    <div class="domains-grid">
+      <div class="domain-card">
+        <div class="domain-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Cybersecurity &amp; Network Defense</h3>
+        <p>Analyzing packet captures, network protocol inspection, Linux hardening, and studying SOC monitoring flows to secure systems proactively.</p>
+        <div class="tag-cloud">
+          <span class="tech-tag">Wireshark</span>
+          <span class="tech-tag">Packet Auditing</span>
+          <span class="tech-tag">Linux Hardening</span>
+          <span class="tech-tag">SOC Concepts</span>
+        </div>
+      </div>
+
+      <div class="domain-card">
+        <div class="domain-icon" style="background: rgba(6, 182, 212, 0.1); border-color: rgba(6, 182, 212, 0.2); color: var(--cyan);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </div>
+        <h3>Modern Full-Stack Development</h3>
+        <p>Developing responsive frontends and resilient API backends with an emphasis on defensive coding, state validation, and clean application lifecycles.</p>
+        <div class="tag-cloud">
+          <span class="tech-tag">Next.js</span>
+          <span class="tech-tag">TypeScript</span>
+          <span class="tech-tag">FastAPI</span>
+          <span class="tech-tag">Node.js</span>
+          <span class="tech-tag">RESTful APIs</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT STRIP -->
+<section class="contact-section" id="contact">
+  <div class="container">
+    <div class="contact-container">
+      <div>
+        <h2>Let’s connect.</h2>
+        <p>Interested in collaborating on security projects, web development, or hackathons? Reach out directly.</p>
+      </div>
+      <div class="contact-actions">
+        <a href="https://www.linkedin.com/in/vivek-shukla" target="_blank" rel="noopener" class="btn btn-linkedin">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.25c-.9 0-1.63.73-1.63 1.63a1.63 1.63 0 0 0 1.63 1.63c.9 0 1.63-.73 1.63-1.63 0-.9-.73-1.63-1.63-1.63Z"/></svg>
+          LinkedIn
+        </a>
+        <a href="mailto:vivekshukla10700@gmail.com" class="btn btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg>
+          vivekshukla10700@gmail.com
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container footer-inner">
+    <div>© <span id="year"></span> Vivek Shukla · Gorakhpur, Uttar Pradesh</div>
+    <div class="social-links">
+      <a href="https://github.com/vegeta53" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/vivek-shukla" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:vivekshukla10700@gmail.com">Email</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Subtle 3D Card Tilt Effect on Terminal
+  const card = document.querySelector('.terminal-card');
+  if (card && window.matchMedia('(pointer:fine)').matches) {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      card.style.transform = `perspective(1000px) rotateX(${-y / 25}deg) rotateY(${x / 25}deg) translateY(-4px)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
+    });
+  }
+</script>
+
+</body>
+</html>
+
+```
